@@ -1,45 +1,55 @@
 #include<iostream>
-#include <bits/stdc++.h>
 #include<string>
 #include<iomanip>
 using namespace std;
-int nCr(int n, int r){
-    long long res =1;
-    for (int i = 0; i < r; i++)
-    {
-        /* code */
-        res = res * (n-1);
-        res =res / (i+1);
-    }
-    return (int)(res);
-}
-vector<vector<int>> pascalTriangle(int n){
-    vector<vector<int>> ans;
-    for (int row = 1; row <= n; row++)
-    {
-        /* code */
-        vector<int> templist;
-        for (int  col = 1; col <=n ; col++)
-        {
-            /* code */
-            templist.push_back(nCr(row -1,col-1));
-        }
-        ans.push_back(templist);
-    }
-    return ans;
-    
-}
+//pascal's triangle
+/*
+            1
+        1   2    1
+    1    3     3      1
+*/
+
 int main()
 {
     int n;
-    cout<<"Enter the number of rows: "<<endl;
+    cout<<"Enter the no of 1's in pascal Triangle: "<<endl;
     cin>>n;
-    vector<vector<int>> ans = pascalTriangle(n);
-    for (auto it : ans) {
-        for (auto ele : it) {
-            cout << ele << " ";
+    int arr[n][n];
+    //Brute Force
+    for (int i = 0; i < n; i++)
+    {
+        /* code */
+        for (int j = 0; j < n; j++)
+        {
+            /* code */
+            if (j ==0)
+            {
+                /* code */
+                arr[i][j] =1;
+            }else if(i==j){
+                arr[i][j] = 1;
+            }else{
+                arr[i][j] = arr[i-1][j-1]+arr[i-1][j];
+            }
+            
         }
-        cout << "n";
+        
+
     }
+    for (int i = 0; i < n; i++)
+    {
+        /* code */
+        for (int j = 0; j < n; j++)
+        {
+            
+            
+            if(i>=j)
+        cout<<arr[i][j]<<" ";
+        }
+        cout<<"\n";
+        
+    }
+    
+    
     return 0;
 }
